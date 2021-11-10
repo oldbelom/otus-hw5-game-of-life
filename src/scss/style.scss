@@ -1,7 +1,20 @@
-body {
-  background-color: #fff;
+table {
+  border-collapse: collapse;
+}
 
-  .lol {
-    font-size: 2px;
+button {
+  margin-bottom: 50px;
+}
+
+.cell {
+  width: 15px;
+  height: 15px;
+
+  &.alive {
+    background-color: #4fc720;
+  }
+
+  &.dead {
+    background-color: #fff;
   }
 }
