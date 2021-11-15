@@ -38,9 +38,7 @@ export function drawField(
       const x = clickedElement.getAttribute("data-x");
       const y = clickedElement.getAttribute("data-y");
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      if (x >= 0 && y >= 0) {
+      if (Number(x) >= 0 && Number(y) >= 0) {
         onCellClick(Number(x), Number(y));
       }
     }
