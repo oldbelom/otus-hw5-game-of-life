@@ -12,11 +12,19 @@ export function createGameOfLife(
   let gameIsRunning = false;
   let timer: NodeJS.Timer;
 
-  htmlElement.innerHTML = `<div class="field-wrapper"></div><button>Start</button>`;
+  htmlElement.innerHTML = `
+    <div class="field-wrapper"></div>
+    <label >Установите скорость игры
+      <input type="range" min="100" max="2000" />
+    </label>
+    <button>Start</button>
+  `;
+
   const fieldWrapper = htmlElement.querySelector(
     ".field-wrapper"
   ) as HTMLElement;
   const button = htmlElement.querySelector("button") as HTMLElement;
+  const input = htmlElement.querySelector("input") as HTMLInputElement;
 
   let field: number[][] = new Array(sizeY)
     .fill(0)
@@ -35,7 +43,7 @@ export function createGameOfLife(
     clearInterval(timer);
   }
 
-  function startGame() {
+  function startGame(speed: number) {
     gameIsRunning = true;
     button.innerHTML = "Stop";
 
@@ -46,12 +54,13 @@ export function createGameOfLife(
         alert("All cells died");
         stopGame();
       }
-    }, 500);
+    }, speed);
   }
 
   button.addEventListener("click", () => {
     if (!gameIsRunning) {
-      startGame();
+      const speed = Number(input.value);
+      startGame(speed);
     } else {
       stopGame();
     }
