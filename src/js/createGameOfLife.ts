@@ -65,4 +65,12 @@ export function createGameOfLife(
       stopGame();
     }
   });
+
+  input.addEventListener("change", () => {
+    if (gameIsRunning) {
+      const speed = Number(input.value);
+      stopGame();
+      startGame(speed);
+    }
+  });
 }
